@@ -1,0 +1,41 @@
+# EOS-04 SAR Flood Detection — Python Dependencies
+# ==================================================
+# DGX A100 environment (CUDA 12.1, cuDNN 8.9)
+# Install: pip install -r requirements.txt
+
+# Core geo/raster
+rasterio>=1.3.8
+gdal==3.7.*          # match your system GDAL
+geopandas>=0.14
+shapely>=2.0
+pyproj>=3.6
+
+# Scientific
+numpy>=1.24
+scipy>=1.11
+scikit-image>=0.21   # Otsu, GLCM
+pandas>=2.0
+
+# ML classifiers
+scikit-learn>=1.3
+xgboost>=2.0         # GPU tree_method=gpu_hist
+shap>=0.43
+joblib>=1.3
+
+# Deep learning — match DGX CUDA version
+torch>=2.1.0+cu121
+torchvision>=0.16.0+cu121
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+# Transformer architectures
+transformers>=4.35    # SegFormer
+timm>=0.9.8           # DeepLabV3+ backbone
+
+# Visualisation & reporting
+matplotlib>=3.8
+seaborn>=0.13
+pillow>=10.0
+
+# Optional: experiment tracking
+wandb>=0.16
+tensorboard>=2.15
