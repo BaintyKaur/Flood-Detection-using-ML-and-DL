@@ -1,0 +1,20 @@
+{
+  "model": "unet",
+  "flood_stats": {
+    "flood_pixels": 11653516,
+    "flood_area_ha": 377573.92,
+    "flood_pct": 10.772,
+    "pixel_spacing_m": 18.0,
+    "total_pixels": 108180801,
+    "overall_accuracy": 0.9678,
+    "iou_flood": 0.8078,
+    "f1_flood": 0.8937,
+    "precision_flood": 0.9171,
+    "recall_flood": 0.8714,
+    "kappa": 0.8747,
+    "tp": 10684336,
+    "fp": 965166,
+    "fn": 1577423,
+    "tn": 65709121
+  }
+}

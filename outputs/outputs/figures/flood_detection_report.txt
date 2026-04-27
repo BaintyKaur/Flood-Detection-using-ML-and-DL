@@ -1,0 +1,49 @@
+======================================================================
+EOS-04 SAR FLOOD DETECTION REPORT
+======================================================================
+
+MISSION METADATA
+----------------------------------------
+Satellite      : EOS-04 (RISAT-1A)
+Sensor         : SAR C-band, MRS mode
+Polarisations  : HH + HV (dual-pol)
+Pixel spacing  : 18 m × 18 m (UTM Zone 44N, WGS84)
+Incidence angle: 37.91°
+DEM correction : Applied (Copernicus 30 m)
+
+ACQUISITIONS
+----------------------------------------
+Before  : 20-Jan-2023 00:32:06 UTC  (Orbit 5141, Cycle 18)
+During  : 26-Jul-2023 00:31:51 UTC  (Orbit 7968, Cycle 29)
+Scene   : 17.32°N 80.99°E | ~190×188 km swath
+
+METHODOLOGY
+----------------------------------------
+1. Preprocessing  : DN→σ⁰ calibration, noise bias removal,
+                    Refined Lee speckle filter (7×7, ENL=2)
+2. Features       : σ⁰_HH/HV, CR, RFDI, Δσ⁰, GLCM texture
+3. Classical      : Otsu auto-threshold on σ⁰_HH
+4. ML classifiers : Random Forest, XGBoost (GPU), SVM
+5. Deep learning  : U-Net / Attention U-Net / SegFormer / DeepLabV3+
+                    DGX DDP (8×A100), FP16, patch 512×512
+                    Loss: Dice + BCE | LR: cosine with warmup
+6. Post-process   : Morphological open/close, sieve filter
+7. Ensemble       : Weighted vote (DL×2 + Otsu×1)
+
+FLOOD EXTENT RESULTS
+----------------------------------------
+Model          : unet
+Flood pixels   : 11,653,516
+Flood area     : 377,573.9 ha
+Scene coverage : 10.77%
+
+ACCURACY (vs reference)
+----------------------------------------
+Overall Accuracy : 0.9678
+Flood IoU        : 0.8078
+Flood F1         : 0.8937
+Precision        : 0.9171
+Recall           : 0.8714
+Kappa            : 0.8747
+
+======================================================================
